@@ -1,0 +1,22 @@
+{
+  "name": "yesall.men",
+  "version": "1.0.0",
+  "description": "well actually...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/streeetlamp/yesall.men.git"
+  },
+  "author": "cody whitby <hi@codywhitby.net> (https://github.com/streeetlamp)",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/streeetlamp/yesall.men/issues"
+  },
+  "homepage": "https://github.com/streeetlamp/yesall.men#readme",
+  "devDependencies": {
+    "twit": "^2.2.5"
+  }
+}

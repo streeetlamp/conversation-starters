@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>✨ Have a conversation why don't you? ✨</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-resource/dist/vue-resource.min.js"></script>
+  <link href="main.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="app">
+    <div v-for="convos in allConvos" v-bind:key="convos.id">
+    <p>{{convos}}</p>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        allConvos: [],
+      },
+      created () {
+        this.fetchData();
+      },
+      methods: {
+        fetchData: function() {
+          // GET request
+          this.$http.get('./conversationStarters.json').then(function (response) {
+              // get status
+              response.status;
+              this.allConvos = response.body;
+
+          }, function (response) {
+
+              // error callback
+          })
+        },
+      }
+    })
+  </script>
+</body>
+</html>
