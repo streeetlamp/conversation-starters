@@ -9,8 +9,8 @@
 <body>
 
   <div id="app">
-    <div v-for="convos in allConvos" v-bind:key="convos.id">
-    <p>{{convos}}</p>
+    <div>
+      <p>{{allConvos}}</p>
     </div>
   </div>
 
@@ -27,9 +27,13 @@
         fetchData: function() {
           // GET request
           this.$http.get('./conversationStarters.json').then(function (response) {
-              // get status
-              response.status;
-              this.allConvos = response.body;
+            
+              var ranConvo = function (obj) {
+                var keys = Object.keys(obj)
+                return obj[keys[ keys.length * Math.random() << 0]];
+              };
+
+              this.allConvos = ranConvo(response.body);
 
           }, function (response) {
 
