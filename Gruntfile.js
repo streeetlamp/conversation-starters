@@ -1,3 +1,5 @@
+const sass = require('node-sass');
+
 module.exports = function(grunt) {
 
     // 1. All configuration goes here 
@@ -11,13 +13,14 @@ module.exports = function(grunt) {
               expand: true,
               cwd: 'scss',
               src: ['*.scss'],
-              dest: 'scss/css',
+              dest: 'css',
               ext: '.css'
             }]
           },
           options: {
             sourceMap: false, 
-            outputStyle: 'nested', 
+            outputStyle: 'compressed',
+            implementation: sass
           }
         },
 
@@ -27,14 +30,14 @@ module.exports = function(grunt) {
               tasks: ['sass']
             },
             css: {
-                files: ['scss/css/**/*.css']
+                files: ['css/**/*.css']
             },
             js: {
                 files: ['js/**/*.js','!js/main.js'],
                 tasks: ['concat']
             },
             livereload: {
-                files: ['**/*.html', '**/*.php', '**/*.js', 'scss/**/*.css'],
+                files: ['**/*.html', '**/*.php', '**/*.js', '**/*.css'],
                 options: { livereload: true }
             }
         },
@@ -42,7 +45,7 @@ module.exports = function(grunt) {
 
         browserSync: {
             bsFiles: {
-                src : 'scss/css/style.css'
+                src : 'css/main.css'
             },
             options: {
                 watchTask: true, // < VERY important
@@ -56,7 +59,7 @@ module.exports = function(grunt) {
         autoprefixer: {
             dist: {
                 files: {
-                    'build/css/style.css' : 'scss/css/style.css'
+                    'build/css/main.css' : 'css/main.css'
                 }
             }
         },
@@ -64,7 +67,7 @@ module.exports = function(grunt) {
         cmq: {
             your_target: { 
                 files: {
-                    'build/css/style.css' : 'build/css/style.css'
+                    'build/css/main.css' : 'css/main.css'
                 }
             }
         },
@@ -72,7 +75,7 @@ module.exports = function(grunt) {
         cssmin: {
             combine: {
                 files: {
-                    'build/css/style.css': ['build/css/style.css']
+                    'build/css/main.css': ['build/css/main.css']
                 }
             }
         },
@@ -142,5 +145,5 @@ module.exports = function(grunt) {
     grunt.registerTask('dev', ['browserSync','watch']);
 
     // cleans directories, does everything for css, js, and images for deploy
-    grunt.registerTask('build', ['includes', 'includes:build', 'sass', 'autoprefixer', 'cmq', 'cssmin', 'concat', 'uglify']);
+    grunt.registerTask('build', ['sass', 'autoprefixer', 'cmq', 'cssmin', 'concat', 'uglify']);
 };
