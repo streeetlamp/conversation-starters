@@ -32,13 +32,11 @@
         fetchData: function() {
           // GET request
           this.$http.get('./conversationStarters.json').then(function (response) {
-            
-              var ranConvo = function (obj) {
-                var keys = Object.keys(obj)
-                return obj[keys[ keys.length * Math.random() << 0]];
-              };
 
-              this.allConvos = ranConvo(response.body);
+              var ranNum = Math.floor(Math.random() * response.body.length) + 0;
+
+
+              this.allConvos = response.body[ranNum].question;
 
           }, function (response) {
 
